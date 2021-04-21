@@ -58,7 +58,7 @@ class BgpTest extends NetBoxTestCase
 
         $body = json_decode($query->getBody());
 
-        $this->assertTrue(201, $query->getStatusCode());
+        $this->assertEquals(201, $query->getStatusCode());
         $this->assertObjectHasAttribute('id', $body);
 
         return $body->id;
@@ -75,7 +75,7 @@ class BgpTest extends NetBoxTestCase
 
         $body = json_decode($query->getBody());
 
-        $this->assertTrue(201, $query->getStatusCode());
+        $this->assertEquals(201, $query->getStatusCode());
         $this->assertObjectHasAttribute('id', $body);
 
         return $body->id;
@@ -95,7 +95,7 @@ class BgpTest extends NetBoxTestCase
     {
         $model = new Session([
             'name' => 'PHPUnit Session 1',
-            'status' => 'deprecated',
+            'status' => 'planned',
             'description' => 'Test Case',
             'local_address' => $localIp,
             'remote_address' => $remoteIp,
@@ -170,16 +170,28 @@ class BgpTest extends NetBoxTestCase
     /**
      * @test
      * @depends can_create_asn_via_mass_assignment
-     * @depends can_create_asn_via_fluid_setters
-     * @param int $idOne
-     * @param int $idTwo
+     * @param int $id
      */
-    public function can_delete_asns(int $idOne, int $idTwo)
+    public function can_delete_asns(int $id)
     {
-        $deleteOne = Asn::delete($idOne);
-        $deleteTwo = Asn::delete($idTwo);
+        $result = Asn::delete($id);
 
-        $this->assertEquals(204, $deleteOne->getStatusCode());
-        $this->assertEquals(204, $deleteTwo->getStatusCode());
+        $this->assertEquals(204, $result->getStatusCode());
+    }
+
+    /**
+     * @test
+     * @depends create_local_ip_for_session
+     * @depends create_remote_ip_for_session
+     * @param int $local
+     * @param int $remote
+     */
+    public function can_delete_ips(int $local, int $remote)
+    {
+        $localDelete = IpAddress::delete($local);
+        $remoteDelete = IpAddress::delete($remote);
+
+        $this->assertEquals(204, $localDelete->getStatusCode());
+        $this->assertEquals(204, $remoteDelete->getStatusCode());
     }
 }

@@ -21,6 +21,7 @@
   },
   "autoload-dev": {
     "psr-4": {
+      "CmdrSharp\\NetBox\\Tests\\": "vendor/cmdrsharp/netbox-laravel/tests/",
       "CmdrSharp\\NetBoxBgp\\Tests\\": "tests"
     }
   },

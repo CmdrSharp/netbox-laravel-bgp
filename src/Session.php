@@ -8,6 +8,7 @@ use CmdrSharp\NetBox\NetBox;
 use CmdrSharp\NetBox\Tenancy\Tenant;
 use CmdrSharp\NetBox\Traits\HandlesNetBoxResults;
 use CmdrSharp\NetBox\Traits\RequiresSlugs;
+use Psr\Http\Message\ResponseInterface;
 
 class Session extends NetBox
 {
@@ -30,6 +31,15 @@ class Session extends NetBox
         'local_as',
         'remote_as',
     ];
+
+    /**
+     * @param string $name
+     * @return ResponseInterface
+     */
+    public static function whereName(string $name): ResponseInterface
+    {
+        return parent::where("?q={$name}");
+    }
 
     /**
      * @param string $name

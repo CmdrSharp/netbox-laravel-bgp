@@ -26,10 +26,15 @@ class Session extends NetBox
         'site',
         'tenant',
         'device',
+        'device.id',
         'local_address',
+        'local_address.id',
         'remote_address',
+        'remote_address.id',
         'local_as',
+        'local_as.id'.
         'remote_as',
+        'remote_as.id',
     ];
 
     /**

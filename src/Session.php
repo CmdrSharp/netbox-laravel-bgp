@@ -32,7 +32,7 @@ class Session extends NetBox
         'remote_address',
         'remote_address.id',
         'local_as',
-        'local_as.id'.
+        'local_as.id',
         'remote_as',
         'remote_as.id',
     ];
@@ -136,6 +136,7 @@ class Session extends NetBox
     public function setDevice(int $device): Session
     {
         $this->setAttribute('device', $device);
+        $this->setAttribute('device.id', $device);
 
         return $this;
     }
@@ -147,6 +148,7 @@ class Session extends NetBox
     public function setLocalAddress(int $address): Session
     {
         $this->setAttribute('local_address', $address);
+        $this->setAttribute('local_address.id', $address);
 
         return $this;
     }
@@ -161,6 +163,7 @@ class Session extends NetBox
         $model = $this->getOnlyResult($query);
 
         $this->setAttribute('local_address', $model->id);
+        $this->setAttribute('local_address.id', $model->id);
 
         return $this;
     }
@@ -172,6 +175,7 @@ class Session extends NetBox
     public function setRemoteAddress(int $address): Session
     {
         $this->setAttribute('remote_address', $address);
+        $this->setAttribute('remote_address.id', $address);
 
         return $this;
     }
@@ -186,6 +190,7 @@ class Session extends NetBox
         $model = $this->getOnlyResult($query);
 
         $this->setAttribute('remote_address', $model->id);
+        $this->setAttribute('remote_address.id', $model->id);
 
         return $this;
     }
@@ -197,6 +202,7 @@ class Session extends NetBox
     public function setLocalAs(int $as): Session
     {
         $this->setAttribute('local_as', $as);
+        $this->setAttribute('local_as.id', $as);
 
         return $this;
     }
@@ -211,6 +217,7 @@ class Session extends NetBox
         $model = $this->getOnlyResult($query);
 
         $this->setAttribute('local_as', $model->id);
+        $this->setAttribute('local_as.id', $model->id);
 
         return $this;
     }
@@ -222,6 +229,7 @@ class Session extends NetBox
     public function setRemoteAs(int $as): Session
     {
         $this->setAttribute('remote_as', $as);
+        $this->setAttribute('remote_as.id', $as);
 
         return $this;
     }
@@ -236,6 +244,7 @@ class Session extends NetBox
         $model = $this->getOnlyResult($query);
 
         $this->setAttribute('remote_as', $model->id);
+        $this->setAttribute('remote_as.id', $model->id);
 
         return $this;
     }
